@@ -1,0 +1,31 @@
+# Additional logger names to configure (root logger is always configured)
+# loggers=
+
+# Root logger level
+logger.level=INFO
+
+# Root logger handlers
+logger.handlers=FILE
+
+# Console handler configuration
+handler.CONSOLE=org.jboss.logmanager.handlers.ConsoleHandler
+handler.CONSOLE.properties=autoFlush
+handler.CONSOLE.autoFlush=true
+handler.CONSOLE.formatter=PATTERN
+
+# File handler configuration
+handler.FILE=org.jboss.logmanager.handlers.FileHandler
+handler.FILE.level=ALL
+handler.FILE.append=true
+handler.FILE.fileName=${jboss.server.log.dir}/greeter.log
+# 'append' needs to go before 'fileName' in this list!
+handler.FILE.properties=autoFlush,append,fileName
+handler.FILE.autoFlush=true
+handler.FILE.enabled=true
+handler.FILE.formatter=PATTERN
+
+
+# Formatter pattern configuration
+formatter.PATTERN=org.jboss.logmanager.formatters.PatternFormatter
+formatter.PATTERN.properties=pattern
+formatter.PATTERN.pattern=%K{level}%d{HH:mm:ss,SSS} %-5p %C.%M(%L) [%c] %s%e%n
