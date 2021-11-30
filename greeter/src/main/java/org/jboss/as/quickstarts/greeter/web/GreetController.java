@@ -22,10 +22,13 @@ import javax.inject.Named;
 
 import org.jboss.as.quickstarts.greeter.domain.User;
 import org.jboss.as.quickstarts.greeter.domain.UserDao;
+import java.util.logging.Logger;
 
 @Named
 @RequestScoped
 public class GreetController {
+
+    private Logger logger = Logger.getLogger(GreetController.class.getName());
 
     @Inject
     private UserDao userDao;
@@ -37,8 +40,10 @@ public class GreetController {
     public void greet() {
         User user = userDao.getForUsername(username);
         if (user != null) {
+            logger.info(String.format("Greeting %s %s", user.getFirstName(), user.getLastName()));
             greeting = "Hello, " + user.getFirstName() + " " + user.getLastName() + "!";
         } else {
+            logger.warning(String.format("Failed to greet user with username %s", username));
             greeting = "No such user exists! Use 'emuster' or 'jdoe'";
         }
     }
