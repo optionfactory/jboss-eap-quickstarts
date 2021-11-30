@@ -47,6 +47,7 @@
     </licenses>
 
     <properties>
+        <enforcer.skip>true</enforcer.skip>
         <root.dir>${project.basedir}</root.dir>
         <jboss.home.name>EAP7_HOME</jboss.home.name>
         <product.name>JBoss EAP</product.name>
